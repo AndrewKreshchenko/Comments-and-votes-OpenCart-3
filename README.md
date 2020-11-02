@@ -1,11 +1,18 @@
-#This 
+## Purpose
+Simple created advanced features for comments on the product page or any inforational or blog page of your OpenCart 3.x online store. These features include likes for comments and multilevel comments.
 
+## When it's important?
+Very often for commercial products. You can see votes, likes or dislikes, share links almost on every modern commercial website that includes customers comments somewhere. Even these comments may be organised in multilevel structure.
 
-TLT Blog for Opencart 3.0.x
-https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=24602
+:warning: The extension need further improvement. So, you can fork my repo or send me a message if something goes wrong.
+:warning: CSS styles on your page may not dislay correctly, especially when your theme is not "default". 
+
+## Prerequisites before usage
+* Upload files ... and insert code between commented 3 dots ("...") into corresponding file. Please, be careful.
+* You have to create table(s) in MySQL database (further description).
+* If You gonna insert parts of code for TLT Blog, please, visit the [official page](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=24602) of this free module. (I used TLT Blog for Opencart 3.0.x. license_tltblog.txt is in the root directory)
+
 ```
-
-
 
 1) Extend table that is exists:
 ALTER TABLE forma02_oc3dev.`oc_review` ADD COLUMN `approval` TINYINT(1) NOT NULL
