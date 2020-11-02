@@ -1,0 +1,387 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+      <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+    {% if (column_left and column_right) %}
+      {% set class = 'col-sm-6' %}
+    {% elseif (column_left or column_right) %}
+      {% set class = 'col-sm-9' %}
+    {% else %}
+      {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">
+      {% if (show_title) %}
+        <h1>{{ heading_title }}</h1>
+      {% endif %}
+      
+      <!-- Main body of the article -->
+      <div class="article-content">
+        {% if (blog_image|length) %}
+        <div class="article-wrapper">
+          <div class="article-image"><img src="{{ blog_image }}" alt="Article image"></div>
+          <div class="article-description">{{ description }}</div>
+        </div>
+        {% else %}
+        {{ description }}
+        {% endif %}
+      </div>
+      
+      {% if (tags) %}
+        <hr />
+        <p>{{ text_tags }}&nbsp;
+          {% for tag in tags %}
+            {% if not loop.last %}
+              <a href="{{ tag.href }}">{{ tag.title }}</a>,&nbsp;
+            {% else %}
+              <a href="{{ tag.href }}">{{ tag.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+      {% if (products) %}
+        <h3>{{ text_related }}</h3>
+        <div class="row">
+          {% set i = 0 %}
+          {% for product in products %}
+            {% if (column_left and column_right) %}
+              {% set class = 'col-lg-6 col-md-6 col-sm-12 col-xs-12' %}
+            {% elseif (column_left or column_right) %}
+              {% set class = 'col-lg-4 col-md-4 col-sm-6 col-xs-12' %}
+            {% else %}
+              {% set class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12' %}
+            {% endif %}
+            <div class="{{ class }}">
+              <div class="product-thumb transition">
+                <div class="image"><a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" class="img-responsive" /></a></div>
+                <div class="caption">
+                  <h4><a href="{{ product['href'] }}">{{ product['name'] }}</a></h4>
+                  <p>{{ product['description'] }}</p>
+                  {% if (product['rating']) %}
+                    <div class="rating">
+                      {% set i = 1 %}
+                      {% for i in i..5 %}
+                        {% if (product['rating'] < i) %}
+                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                        {% else %}
+                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                  {% if (product['price']) %}
+                    <p class="price">
+                      {% if (not product['special']) %}
+                        {{ product['price'] }}
+                      {% else %}
+                        <span class="price-new">{{ product['special'] }}</span> <span class="price-old">{{ product['price'] }}</span>
+                      {% endif %}
+                      {% if (product['tax']) %}
+                        <span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+                <div class="button-group">
+                  <button type="button" onclick="cart.add('{{ product['product_id'] }}', '{{ product['minimum'] }}');"><span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span> <i class="fa fa-shopping-cart"></i></button>
+                  <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product['product_id'] }}');"><i class="fa fa-heart"></i></button>
+                  <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product['product_id'] }}');"><i class="fa fa-exchange"></i></button>
+                </div>
+              </div>
+            </div>
+            {% if ((column_left and column_right) and (i % 2 == 0)) %}
+              <div class="clearfix visible-md visible-sm"></div>
+            {% elseif ((column_left or column_right) and (i % 3 == 0)) %}
+              <div class="clearfix visible-md"></div>
+            {% elseif (i % 4 == 0) %}
+              <div class="clearfix visible-md"></div>
+            {% endif %}
+            {% set i = i + 1 %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="tab-pane col-sm-12 tltblog-reviews-content" id="tab-review">
+        <input type="hidden" name="depth" value="1" />
+
+        <!-- Reviews START -->
+        <div id="review">
+
+          <!-- Review add START -->
+          {% if logged %}
+          <div class="tltblog-review-add" data-depth="{{ review.depth }}">
+            <div class="row">
+              <div class="col-sm-8 tltblog-review-add__left-field">
+                <div class="form-group">
+                  <label class="control-label" for="input-review">{{ entry_review }}</label>
+                  <textarea name="text" rows="3" class="form-control tltblog-review-add__text"></textarea>
+                  <div class="help-block">{{ text_note_review }}</div>
+                </div>
+              </div>
+              <div class="col-sm-4 tltblog-review-add__right-field">
+                <div class="form-group">
+                  <label class="control-label" for="input-name">{{ entry_name }}</label>
+                  <input type="text" name="name" value="{{ customer_name }}" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="clearfix">
+              <button type="button" data-loading-text="{{ text_loading }}" class="btn btn-primary"><span>{{ button_continue }}</span><span class="hidden">{{ button_modify }}</span></button>
+            </div>
+          </div>
+          {% else %}
+            {{ text_login }}
+          {% endif %}
+          <!-- Review add END -->
+
+          {% if reviews %}
+          <input type="hidden" value="{{ customer_id }}"></input>
+          <ul class="tltblog-reviews">
+            {% for review in reviews %}
+            <li class="tltblog-review" data-depth="{{ review.depth }}">
+              <div class="tltblog-review__top-info">
+                <strong>{{ review.author }}</strong><span class="tltblog-review__date">&#183;&nbsp;&nbsp;{{ review.date_added }}</span>
+              </div>
+              <div class="tltblog-review__content">
+                <p>{{ review.text }}</p>
+              </div>
+              <div class="tltblog-review-approval">
+                <div class="tltblog-review-approval--approve{{ (review.approval ? ' tltblog-review-approval--approved' : '') }}{{ (logged ? ' tltblog-review-approval--live-up' : '') }} approve" data-id="{{ review.id }}">
+                  <input type="checkbox" class="hidden">
+                  <i class="tltblog-review-approval__votes-icon fa fa-thumbs-up"></i>
+                  <span class="tltblog-review-approval__votes-num votes-num">{{ review.approval }}</span>
+                </div>
+                <div class="tltblog-review-approval--disapprove{{ (review.disapproval ? ' tltblog-review-approval--disapproved' : '') }}{{ (logged ? ' tltblog-review-approval--live-down' : '') }} disapprove" data-id="{{ review.id }}">
+                  <input type="checkbox" class="hidden">
+                  <i class="tltblog-review-approval__votes-icon fa fa-thumbs-down"></i>
+                  <span class="tltblog-review-approval__votes-num votes-num">{{ review.disapproval }}</span>
+                </div>
+                {% if logged %}<a class="tltblog-review-reply" href="#">{{ text_reply }}</a>{% endif %}
+                {#<a class="tltblog-review-share" href="#">
+                  <span class="tltblog-review-share__text">{{ text_share_review }}</span>
+                  <div class="tltblog-review-share__variants">
+                    <i class="share-icon share-icon--fb"></i>
+                    <i class="share-icon share-icon--twitter"></i>
+                    <i class="share-icon share-icon--telegram"></i>
+                  </div>
+                </a>#}
+              </div>
+
+              {% if logged %}
+              <!-- Review add START -->
+              <div class="tltblog-review-add hidden" data-id="{{ review.id }}" data-depth="{{ review.depth }}">
+                <div class="row">
+                  <div class="col-sm-8 tltblog-review-add__left-field">
+                    <div class="form-group">
+                      <label class="control-label" for="input-review">{{ entry_review }}</label>
+                      <textarea name="text" rows="3" class="form-control tltblog-review-add__text"></textarea>
+                      <div class="help-block">{{ text_note_review }}</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 tltblog-review-add__right-field">
+                    <div class="form-group">
+                      <label class="control-label" for="input-name">{{ entry_name }}</label>
+                      <input type="text" name="name" value="{{ customer_name }}" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <button type="button" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_continue }}</button>
+                </div>
+              </div>
+              <!-- Review add END -->
+              {% endif %}
+
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>{{ text_no_reviews }}</p>
+          {% endif %}
+          
+          <div class="text-right">{{ pagination }}</div>
+        </div>
+        <!-- Reviews END -->
+      </div><!-- End of product description and reviews -->
+      
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+<script type="text/javascript"><!--
+  function approveReview(id, do_approve, is_checked) {
+    // name=js_files_prod&text=ds
+    if (!id) return;
+    var data = 'review_id='+id+'&approval='+do_approve+'&checked='+is_checked;
+    $.ajax({
+      url: 'index.php?route=extension/tltblog/tltblog/approval&tltblog_id={{ tltblog_id }}',
+      type: 'post',
+      dataType: 'json',
+      data: data,
+      beforeSend: function () {
+        $('#button-review').button('loading');
+      },
+      complete: function () {
+        $('#button-review').button('reset');
+      },
+      success: function (json) {
+        //$('.alert-dismissible').remove();
+
+        if (json['error']) {
+          $('#review').after('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ text_review }} '+json['error']+'</div>');
+          console.log(json['message']);
+        }
+
+        if (json['success']) {
+          $('#review > div').eq(0).before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ text_review }} '+json['success']+'</div>');
+          
+          if (json['update']) {
+            location = location.href;
+          }
+
+          if (json.class) {
+            let $votes = $('.'+json.class+'[data-id="'+json.id+'"] .votes-num');
+
+            if (json.cancel && $votes.text().length) {
+              $votes.text() !== '1' ? $votes.text(parseInt($votes.text())-1) : $votes.text('');
+            } else {
+              $votes.text().length ? $votes.text(parseInt($votes.text())+1) : $votes.text('1');
+            }
+
+            if (json.change) {
+              $neighbor = $votes.parent().siblings().find('.votes-num');
+              $neighbor.text() !== '1' ? $neighbor.text(parseInt($neighbor.text())-1) : $neighbor.text('');
+            }
+          }
+        }
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    $('.popup_imgs').magnificPopup({
+      type:'image',
+      delegate: 'a',
+      gallery: {
+        enabled:true
+      }
+    });
+
+    {% if logged %}
+    // approving reviews
+    $(document).on('click', '.tltblog-review .approve', function() {
+      var $checkbox = $(this).find('input[type="checkbox"]');
+      if ($checkbox.is(':checked')) {
+        $checkbox.prop('checked', false);
+        $(this).removeClass('tltblog-review-approval--approved');
+      } else {
+        $checkbox.prop('checked', true);
+        this.classList.add('tltblog-review-approval--approved');
+      }
+      $checkbox.is(':checked') ? approveReview(this.dataset.id, 1, 1) : approveReview(this.dataset.id, 1, 0);
+    });
+    $(document).on('click', '.tltblog-review .disapprove', function() {
+      var $checkbox = $(this).find('input[type="checkbox"]');
+      if ($checkbox.is(':checked')) {
+        $checkbox.prop('checked', false);
+        $(this).removeClass('tltblog-review-approval--disapproved');
+      } else {
+        $checkbox.prop('checked', true);
+        this.classList.add('tltblog-review-approval--disapproved');
+      }
+      $checkbox.is(':checked') ? approveReview(this.dataset.id, 0, 1) : approveReview(this.dataset.id, 0, 0);
+    });
+    {% endif %}
+
+    $('.tltblog-review-reply').click(function(e) {
+      e.preventDefault();
+      $(this).toggleClass('active');
+      $(this).parent().parent().find('.tltblog-review-add').toggleClass('hidden');
+      return;
+
+      let bl_add = $('#review-add'), $parent = $(this).parent().parent();
+      
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        $parent.find('.tltblog-review-add').addClass('hidden');
+        return;
+      }
+      this.classList.add('active');
+      
+      let id = $(this).parent().parent().attr('data-id'), depth = $(this).parent().parent().attr('data-depth');
+
+      //$()
+        $parent.append();
+        $parent.after("<p>Element was there</p>").appendTo("body");
+    });
+
+    $('.tltblog-review-add button').on('click', function() {
+      let container = this.parentElement.parentElement;
+
+      if (container.classList.contains('added')) return;
+
+      let name = $(container).find('.form-control[name="name"]').val(),
+        text = $(container).find('.form-control[name="text"]').val(),
+        depth = 0;
+      
+      if (!name.length || !text.length) return;
+
+      let data = 'name='+encodeURIComponent(name)+'&text='+encodeURIComponent(text);
+
+      if (parseInt(container.dataset.depth) > 0) {
+        let related = container.dataset.id;
+        container.dataset.depth == 3 ? depth = 3 : depth = parseInt(container.dataset.depth)+1;
+        data += '&depth='+depth+'&related='+related;
+      } else {
+        data += '&depth='+1;
+      }
+      
+      if (container.hasAttribute('data-added')) {
+        data += '&modify='+container.dataset.id;
+      }
+
+      console.log('after', data);
+
+      $.ajax({
+        url: 'index.php?route=extension/tltblog/tltblog/write&tltblog_id={{ tltblog_id }}',
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        beforeSend: function () {
+          $('#button-review').button('loading');
+        },
+        complete: function () {
+          $('#button-review').button('reset');
+        },
+        success: function (json) {
+          console.log(json);
+          // return;
+          $('.alert-dismissible').remove();
+
+          if (json['error']) {
+            $('#review > div').eq(0).before('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i>  '+json['error']+'</div>');
+          }
+
+          if (json['success']) {
+            $('#review > div').eq(0).before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i>  '+json['success']+'</div>');
+            
+            //alert();
+            location = window.location.href;
+            
+            container.classList.add('added');
+            if (container.hasAttribute('data-added')) {
+              container.setAttribute('data-added', '');
+              container.classList.add('hidden');
+              $(container).parent().prev().find('.tltblog-review-reply').removeClass('active');
+              $(container).find('button > span').eq(0).addClass('hidden');
+              $(container).find('button > span').eq(1).removeClass('hidden');
+            }
+          }
+        }
+      });
+    });
+  });
+  //--></script>
+{{ footer }}

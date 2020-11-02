@@ -1,0 +1,33 @@
+{% if reviews %}
+<input type="hidden" value="{{ customer_id }}"></input>
+{% for review in reviews %}
+<table class="table table-striped table-bordered">
+  <tr>
+    <td style="width: 50%;"><strong>{{ review.author }}</strong></td>
+    <td class="text-right">{{ review.date_added }}</td>
+  </tr>
+  <tr>
+    <td colspan="2" class="review-description"><p>{{ review.text }}</p>
+      {% for i in 1..5 %}
+      {% if review.rating < i %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> {% endif %}
+      {% endfor %}
+
+      <div class="review-approval{{ (logged ? ' live' : '') }}">
+        <div class="approve {{ (review.approval ? ' approved' : '') }}" data-id="{{ review.id }}">
+          <input type="checkbox" class="hidden">
+          <i class="fa fa-thumbs-up"></i>
+          <div class="votes-num">{{ review.approval }}</div>
+        </div>
+        <div class="disapprove {{ (review.disapproval ? ' disapproved' : '') }}" data-id="{{ review.id }}">
+          <input type="checkbox" class="hidden">
+          <i class="fa fa-thumbs-down"></i>
+          <div class="votes-num">{{ review.disapproval }}</div>
+        </div>
+      </div></td>
+  </tr>
+</table>
+{% endfor %}
+<div class="text-right">{{ pagination }}</div>
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %} 
