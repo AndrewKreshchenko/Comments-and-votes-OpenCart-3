@@ -15,7 +15,7 @@ Displaying comment with no votes for not not logged user on product page:<br/>
 Displaying comment on the top level for logged user on TLT Blog page:<br/>
 <img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg" height="250">
 Displaying comment on the third level for logged user on TLT Blog page:<br/>
-<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg" height="400">
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg">
 
 ## Prerequisites before usage
 * Upload files ... and insert code between commented 3 dots ("...") into corresponding file. Please, be careful.
