@@ -8,7 +8,7 @@ Very often for commercial products. You can see votes, likes or dislikes, share 
 
 I added some screenshots to demonstrate how it works.
 * Product page:
-![Displaying comment with no votes for logged user](https://AndrewKreshchenko.github.com/Comments-and-votes-OpenCart-3/tree/master/docs/comment-product-logged.png)
+![Displaying comment with no votes for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png)
 * Blog page:
 
 ## Prerequisites before usage
