@@ -8,16 +8,16 @@ Very often for commercial products. You can see votes, likes or dislikes, share 
 
 I added some screenshots to demonstrate how it works.
 Displaying comment with no votes for not logged user on product page:<br/>
-<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png" height="170"><br/>
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png" height="150"><br/>
 Displaying comment with no votes for not not logged user on product page:<br/>
-<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png" height="210"><br/>
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png" height="250"><br/>
 <br/>
 Displaying comments on the top and third levels for logged user on TLT Blog page:<br/>
 ![Displaying comment on the top level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg)
 ![Displaying comment on the third level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/3d-hierarchy-comment-blog-page-logged.jpg)
 
 ## Prerequisites before usage
-* Upload files ... and insert code between commented 3 dots ("...") into corresponding file. Please, be careful.
+* Upload files according to the standard OpenCart MVC structure. Then review each file of my extension and insert code between commented 3 dots ("...") into corresponding file. Please, be careful to paste parts of code to the right places.
 * You have to create table(s) in MySQL database (further description).
 * If You gonna insert parts of code for TLT Blog, please, visit the [official page](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=24602) of this free module. (I used TLT Blog for Opencart 3.0.x. license_tltblog.txt is in the root directory). catalog/controller/extension/tltblog/tltblog.php contains realized multilevel comments building approach.
 * Test your result. CSS styles on your page may not dislay correctly, especially when your theme is not "default".
