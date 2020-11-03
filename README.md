@@ -1,10 +1,15 @@
-:warning: The extension works but may need further improvement. Send [me](mailto:mail2andyk@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) a message if something goes wrong.
+:warning: The extension works but may need further improvement. Send [me](mailto:mail2andyk@gmail.com) a message if something goes wrong.
 
 ## Purpose
 Simple advanced features for comments on the product page or any inforational or blog page of an OpenCart 3.x online store. These features include likes for comments and multilevel comments (up to 3d level in this aproach, customer's reply on a particular third-level-comment will display on the same 3d level after that comment).
 
 ## When it's important?
 Very often for commercial products. You can see votes, likes or dislikes, share links almost on every modern commercial website that includes customers comments somewhere. Even these comments may be organised in multilevel structure.
+
+I added some screenshots to demonstrate how it works.
+* Product page:
+![Displaying comment with no votes for logged user](https://AndrewKreshchenko.github.com/Comments-and-votes-OpenCart-3/tree/master/docs/comment-product-logged.png)
+* Blog page:
 
 ## Prerequisites before usage
 * Upload files ... and insert code between commented 3 dots ("...") into corresponding file. Please, be careful.
@@ -13,8 +18,8 @@ Very often for commercial products. You can see votes, likes or dislikes, share 
 * Test your result. CSS styles on your page may not dislay correctly, especially when your theme is not "default".
 
 ### Prepare MySQL DB
-Firstly I'd like to demonstrate how to prepare table for product page.
-1) OpenCart database should have tables called `oc_review`. There you need to add 2 columns to store.
+Firstly I'd like to demonstrate how to prepare table for product page. Go to administration tool of MySQL (I guess you use `phpMyAdmin`), choose the right database and click on tab SQL Command to run SQL commands.
+1) OpenCart database should have tables called `oc_review`. There you need to add 2 columns to store. Replace \`your_database\` with the name of your database.
 
 ```
 ALTER TABLE `your_database`.`oc_review` ADD COLUMN `approval` TINYINT(1) NOT NULL
@@ -73,19 +78,19 @@ CREATE TABLE `your_database`.`oc_blog_review_approval` (
 ### Tests
 For product page:
 ```
-SELECT * FROM `oc_review` WHERE review_id = "1" // in adminer
+SELECT * FROM `your_database`.`oc_review` WHERE review_id = "1" // 1, for instance
 ```
 Count number of columns by specific criteria: 
 ```
 SELECT COUNT(*) FROM `your_database`.COLUMNS WHERE TABLE_NAME='oc_review' AND column_name='review_id'
 ```
 
-Insert review into `oc_blog_review`:
+You can manually insert a review into `oc_blog_review`:
 ```
 INSERT INTO `oc_blog_review` SET author = 'Andy Kre', customer_id = '1', tltblog_id = '2', text = 'Yeah)', depth = '2', date_added = NOW();
 ```
 
-Get Review from `oc_blog_review`:
+To get a review from `oc_blog_review` run soomething like this:
 ```
 SELECT r.review_id, r.author, r.depth, r.text, r.approval, r.disapproval, b.tltblog_id, r.date_added FROM `oc_blog_review` r LEFT JOIN `oc_tltblog` b ON (r.tltblog_id = b.tltblog_id) LEFT JOIN `oc_tltblog_description` bd ON (b.tltblog_id = bd.tltblog_id) WHERE b.tltblog_id = '2' AND b.status = '1' AND r.status = '0' AND bd.language_id = '2' ORDER BY r.date_added DESC;
 ```
