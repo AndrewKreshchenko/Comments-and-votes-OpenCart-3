@@ -1,4 +1,4 @@
-:warning: This extension may need further improvement depending on your needs. Send [me](mailto:mail2andyk@gmail.com) a message if something goes wrong.
+:warning: This extension may need further improvement depending on your needs.  Please, send [me](mailto:mail2andyk@gmail.com) or contact me in Skype (my ID: andy-k_5) a message to ask questions or if something goes wrong.
 
 ## Purpose
 Simple advanced features for comments on the product page or any informational or blog page of an OpenCart 3.x online store. These features include likes for comments and multilevel comments (up to 3d level in this aproach, customer's reply on a particular third-level-comment will display on the same 3d level after that comment).
