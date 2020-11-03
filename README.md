@@ -7,14 +7,15 @@ Simple advanced features for comments on the product page or any inforational or
 Very often for commercial products. You can see votes, likes or dislikes, share links almost on every modern commercial website that includes customers comments somewhere. Even these comments may be organised in multilevel structure.
 
 I added some screenshots to demonstrate how it works.
-* Product page: <br/>
-![Displaying comment with no votes for not logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png)
-![Displaying comment with no votes for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png)
+Displaying comment with no votes for not logged user on product page:<br/>
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png" height="210">
+Displaying comment with no votes for not not logged user on product page:<br/>
 <img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png" height="210">
-<br/><br/>
-* Blog page: <br/>
-![Displaying comment at the top level for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg)
-![Displaying comment in third level for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/3d-hierarchy-comment-blog-page-logged.jpg)
+<br/>
+Displaying comment on the top level for logged user on TLT Blog page:<br/>
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg" height="250">
+Displaying comment on the third level for logged user on TLT Blog page:<br/>
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg" height="400">
 
 ## Prerequisites before usage
 * Upload files ... and insert code between commented 3 dots ("...") into corresponding file. Please, be careful.
