@@ -1,7 +1,7 @@
-:warning: The extension works but may need further improvement. Send [me](mailto:mail2andyk@gmail.com) a message if something goes wrong.
+:warning: This extension may need further improvement depending on your needs. Send [me](mailto:mail2andyk@gmail.com) a message if something goes wrong.
 
 ## Purpose
-Simple advanced features for comments on the product page or any inforational or blog page of an OpenCart 3.x online store. These features include likes for comments and multilevel comments (up to 3d level in this aproach, customer's reply on a particular third-level-comment will display on the same 3d level after that comment).
+Simple advanced features for comments on the product page or any informational or blog page of an OpenCart 3.x online store. These features include likes for comments and multilevel comments (up to 3d level in this aproach, customer's reply on a particular third-level-comment will display on the same 3d level after that comment).
 
 ## When it's important?
 Very often for commercial products. You can see votes, likes or dislikes, share links almost on every modern commercial website that includes customers comments somewhere. Even these comments may be organised in multilevel structure.
@@ -19,7 +19,7 @@ Displaying comments on the top and third levels for logged user on TLT Blog page
 ## Prerequisites before usage
 * Upload files according to the standard OpenCart MVC structure. Then review each file of my extension and insert code between commented 3 dots ("...") into corresponding file. Please, be careful to paste parts of code to the right places.
 * You have to create table(s) in MySQL database (further description).
-* If You gonna insert parts of code for TLT Blog, please, visit the [official page](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=24602) of this free module. (I used TLT Blog for Opencart 3.0.x. license_tltblog.txt is in the root directory). catalog/controller/extension/tltblog/tltblog.php contains realized multilevel comments building approach.
+* If You going to insert parts of code for TLT Blog, please, visit the [official page](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=24602) of this free module. (I used TLT Blog for Opencart 3.0.x. license_tltblog.txt is in the root directory). catalog/controller/extension/tltblog/tltblog.php contains realized multilevel comments building approach.
 * Test your result. CSS styles on your page may not dislay correctly, especially when your theme is not "default".
 
 ### Prepare MySQL DB
@@ -95,7 +95,7 @@ You can manually insert a review into `oc_blog_review`:
 INSERT INTO `oc_blog_review` SET author = 'Andy Kre', customer_id = '1', tltblog_id = '2', text = 'Yeah)', depth = '2', date_added = NOW();
 ```
 
-To get a review from `oc_blog_review` run soomething like this:
+To get a review from `oc_blog_review` run something like this:
 ```
 SELECT r.review_id, r.author, r.depth, r.text, r.approval, r.disapproval, b.tltblog_id, r.date_added FROM `oc_blog_review` r LEFT JOIN `oc_tltblog` b ON (r.tltblog_id = b.tltblog_id) LEFT JOIN `oc_tltblog_description` bd ON (b.tltblog_id = bd.tltblog_id) WHERE b.tltblog_id = '2' AND b.status = '1' AND r.status = '0' AND bd.language_id = '2' ORDER BY r.date_added DESC;
 ```
