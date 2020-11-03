@@ -8,8 +8,9 @@ Very often for commercial products. You can see votes, likes or dislikes, share 
 
 I added some screenshots to demonstrate how it works.
 * Product page: <br/>
-![Displaying comment with no votes for not logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png){:height="210px"}
-![Displaying comment with no votes for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png){:height="210px"}
+![Displaying comment with no votes for not logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png)
+![Displaying comment with no votes for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png)
+<img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png" height="210">
 <br/><br/>
 * Blog page: <br/>
 ![Displaying comment at the top level for logged user](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg)
