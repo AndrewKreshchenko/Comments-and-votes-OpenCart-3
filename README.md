@@ -99,4 +99,4 @@ To get a review from `oc_blog_review` run something like this:
 SELECT r.review_id, r.author, r.depth, r.text, r.approval, r.disapproval, b.tltblog_id, r.date_added FROM `oc_blog_review` r LEFT JOIN `oc_tltblog` b ON (r.tltblog_id = b.tltblog_id) LEFT JOIN `oc_tltblog_description` bd ON (b.tltblog_id = bd.tltblog_id) WHERE b.tltblog_id = '2' AND b.status = '1' AND r.status = '0' AND bd.language_id = '2' ORDER BY r.date_added DESC;
 ```
 ## Contribution
-:open_hands: I'll feel happy if you will decide to fetch this project for development. :smiley:
+:open_hands: I'll feel happy if you will decide to fetch this project for development purpose. :smiley:
