@@ -13,8 +13,9 @@ Displaying comment with no votes for not not logged user on product page:<br/>
 <img src="https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-logged.png"><br/>
 <br/>
 Displaying comments on the top and third levels for logged user on TLT Blog page:<br/>
+![Displaying comment on the top level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/comment-product-not-logged.png)
 ![Displaying comment on the top level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/top-hierarchy-comment-blog-page-logged.jpg)
-![Displaying comment on the third level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/3d-hierarchy-comment-blog-page-logged.jpg)
+![Displaying comment on the third level for logged user on TLT Blog page](https://github.com/AndrewKreshchenko/Comments-and-votes-OpenCart-3/blob/master/docs/3d-hierarchy-comment-blog-page-logged.jpg.jpg)
 
 ## Prerequisites before usage
 * Upload files according to the standard OpenCart MVC structure. Then review each file of my extension and insert code between commented 3 dots ("...") into corresponding file. Please, be careful to paste parts of code to the right places.
