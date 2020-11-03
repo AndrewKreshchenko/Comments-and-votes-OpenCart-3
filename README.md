@@ -1,4 +1,4 @@
-:warning: The extension works but may need further improvement. Send [me](mail2andyk@gmail.com) a message if something goes wrong.
+:warning: The extension works but may need further improvement. Send [me](mailto:mail2andyk@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) a message if something goes wrong.
 
 ## Purpose
 Simple advanced features for comments on the product page or any inforational or blog page of an OpenCart 3.x online store. These features include likes for comments and multilevel comments (up to 3d level in this aproach, customer's reply on a particular third-level-comment will display on the same 3d level after that comment).
@@ -89,3 +89,5 @@ Get Review from `oc_blog_review`:
 ```
 SELECT r.review_id, r.author, r.depth, r.text, r.approval, r.disapproval, b.tltblog_id, r.date_added FROM `oc_blog_review` r LEFT JOIN `oc_tltblog` b ON (r.tltblog_id = b.tltblog_id) LEFT JOIN `oc_tltblog_description` bd ON (b.tltblog_id = bd.tltblog_id) WHERE b.tltblog_id = '2' AND b.status = '1' AND r.status = '0' AND bd.language_id = '2' ORDER BY r.date_added DESC;
 ```
+## Contribution
+:open_hands: I'll feel happy if you will decide to fetch this project for development. :smiley:
